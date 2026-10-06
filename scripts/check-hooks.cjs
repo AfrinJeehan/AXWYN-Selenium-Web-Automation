@@ -1,0 +1,1 @@
+const fs=require('node:fs'); const s=fs.readFileSync('test/support/mocha-hooks.cjs','utf8'); if(!/mochaHooks\s*:\s*\{/.test(s)) throw new Error('Mocha root hook plugin export is missing.'); if(/module\.exports\s*=\s*async|\bbeforeEach\s*\(/.test(s) && !/mochaHooks/.test(s)) throw new Error('Invalid root hook structure.'); console.log('Mocha root-hook validation passed.');

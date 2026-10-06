@@ -1,0 +1,1 @@
+const {HomePage}=require('../../src/pages/home.page'); describe('AXWYN Footer',function(){it('displays footer contact and quick-link content',async()=>{const p=new HomePage(driver());await p.load();await p.scrollToFooter();await p.assertAnyText([/email/i,/phone/i,/contact/i,/about/i]);});});function driver(){return global.__axwynDriver;}

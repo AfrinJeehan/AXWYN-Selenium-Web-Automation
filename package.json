@@ -1,0 +1,34 @@
+{
+  "name": "axwyn-selenium-automation",
+  "version": "2.1.0",
+  "private": true,
+  "description": "Selenium + Mocha automation for AXWYN UAT based on the AXWYN LLD.",
+  "main": "index.js",
+  "scripts": {
+    "pretest": "node scripts/check-config.cjs --runtime",
+    "test": "mocha --config .mocharc.cjs \"test/**/*.spec.js\"",
+    "test:public": "mocha --config .mocharc.cjs \"test/public/**/*.spec.js\"",
+    "test:auth": "mocha --config .mocharc.cjs \"test/authentication/**/*.spec.js\"",
+    "test:contact": "mocha --config .mocharc.cjs \"test/contact/**/*.spec.js\"",
+    "test:subscription": "mocha --config .mocharc.cjs \"test/subscription/**/*.spec.js\"",
+    "test:payment": "mocha --config .mocharc.cjs \"test/payment/**/*.spec.js\"",
+    "test:profile": "mocha --config .mocharc.cjs \"test/profile/**/*.spec.js\"",
+    "test:plan-change": "mocha --config .mocharc.cjs \"test/plan-change/**/*.spec.js\"",
+    "test:performance": "mocha --config .mocharc.cjs \"test/performance/**/*.spec.js\"",
+    "test:report": "mocha --config .mocharc.cjs \"test/**/*.spec.js\" --reporter mochawesome --reporter-options reportDir=reports/mochawesome,reportFilename=AXWYN-UAT-Report,html=true,json=true,overwrite=true",
+    "lint:syntax": "node scripts/check-syntax.cjs",
+    "validate": "npm run lint:syntax && node scripts/check-hooks.cjs && node scripts/check-config.cjs --static",
+    "test:login": "mocha --config .mocharc.cjs \"test/authentication/**/*.spec.js\" --grep \"configured existing AXWYN QA account\"",
+    "test:protected": "mocha --config .mocharc.cjs \"test/profile/**/*.spec.js\" \"test/security/**/*.spec.js\" --grep \"configured|Manage Profile|read-only|logout\"",
+    "test:read-only": "npm run test:public"
+  },
+  "dependencies": {
+    "dotenv": "^16.6.1",
+    "selenium-webdriver": "^4.35.0"
+  },
+  "devDependencies": {
+    "chai": "^5.2.0",
+    "mocha": "^11.7.2",
+    "mochawesome": "^7.1.3"
+  }
+}
